@@ -1,5 +1,6 @@
 const sgMail = require("@sendgrid/mail");
 const path = require("path");
+const { logger } = require("../logger");
 require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
 const API_KEY = process.env.SENDGRID_API_KEY;
 const FROM_EMAIL = process.env.EMAIL_USER;
@@ -15,9 +16,9 @@ async function sendEmail(to, name) {
 
           Thank You.`,
     });
-    console.log("Email sent successfully!");
+    logger.info("Email sent successfully via SendGrid!");
   } catch (error) {
-    console.error("Error sending email:", error);
+    logger.error("Error sending email via SendGrid", { error: error });
   }
 }
 

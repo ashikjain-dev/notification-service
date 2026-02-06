@@ -1,5 +1,6 @@
 const nodemailer = require("nodemailer");
 const path = require("path");
+const { logger } = require("../logger");
 const fromEmail = process.env.EMAIL_USER;
 const appPass = process.env.EMAIL_PASS;
 
@@ -23,13 +24,13 @@ async function sendMail(to, name) {
     });
     return info;
   } catch (error) {
-    console.error(error);
+    logger.error("Error sending email via Nodemailer", { error: error });
     return;
   }
 }
 transporter.verify((err, success) => {
-  if (err) console.log("SMTP connection error:", err);
-  else console.log("SMTP ready:", success);
+  if (err) logger.error("SMTP connection error", { error: err });
+  else logger.info("SMTP ready", { success });
 });
 
 module.exports = {
