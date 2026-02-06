@@ -31,7 +31,7 @@ transporter.verify((err, success) => {
   if (err) console.log("SMTP connection error:", err);
   else console.log("SMTP ready:", success);
 });
-//sendMail("ashikjain33@gmail.com", "Welcome to Task App 🎉");
+
 module.exports = {
   sendMail,
 };
