@@ -7,19 +7,15 @@ const FROM_EMAIL = process.env.EMAIL_USER;
 sgMail.setApiKey(API_KEY);
 
 async function sendEmail(to, name) {
-  try {
-    await sgMail.send({
-      to: to,
-      from: FROM_EMAIL,
-      subject: "Welcome to Task App 🎉",
-      text: `Hi ${name},Welcome to Task App! We're happy to have you with us.
+  await sgMail.send({
+    to: to,
+    from: FROM_EMAIL,
+    subject: "Welcome to Task App 🎉",
+    text: `Hi ${name},Welcome to Task App! We're happy to have you with us.
 
           Thank You.`,
-    });
-    logger.info("Email sent successfully via SendGrid!");
-  } catch (error) {
-    logger.error("Error sending email via SendGrid", { error: error });
-  }
+  });
+  logger.info("Email sent successfully via SendGrid!");
 }
 
 module.exports = { sendEmail };

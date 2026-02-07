@@ -13,20 +13,15 @@ const transporter = nodemailer.createTransport({
 });
 
 async function sendMail(to, name) {
-  try {
-    const info = await transporter.sendMail({
-      from: `Task app <${fromEmail}>`,
-      to: "ashikjain33@gmail.com",
-      subject: "Welcome to Task App 🎉",
-      text: `Hi ${name},Welcome to Task App! We're happy to have you with us.
+  const info = await transporter.sendMail({
+    from: `Task app <${fromEmail}>`,
+    to: "ashikjain33@gmail.com",
+    subject: "Welcome to Task App 🎉",
+    text: `Hi ${name},Welcome to Task App! We're happy to have you with us.
 
           Thank You.`,
-    });
-    return info;
-  } catch (error) {
-    logger.error("Error sending email via Nodemailer", { error: error });
-    return;
-  }
+  });
+  return info;
 }
 transporter.verify((err, success) => {
   if (err) logger.error("SMTP connection error", { error: err });
